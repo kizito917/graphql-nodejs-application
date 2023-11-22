@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { graphqlHTTP } = require('express-graphql');
 const graphQlSchema = require('./graphql/schema/index');
-const graphQlRootValue = require('./graphql/resolvers/index');
+const graphQlRootResolver = require('./graphql/resolvers/index');
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('DB connection successful'))
@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
     schema: graphQlSchema,
-    rootValue: graphQlRootValue,
+    rootValue: graphQlRootResolver,
     graphiql: true,
 }));
 
