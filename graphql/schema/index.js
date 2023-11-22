@@ -32,11 +32,13 @@ module.exports = buildSchema(`
 
     type RootQuery {
         events: [Event!]!
+        fetchSingleEvent(eventId: String): Event!
     }
 
     type RootMutation {
         createEvent(eventInput: EventInput): Event
         createUser(userInput: UserInput): User
+        updateEvent(eventInput: EventInput, eventId: String): Event
     }
 
     schema {

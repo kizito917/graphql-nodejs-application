@@ -9,6 +9,10 @@ module.exports = {
         const events = await eventModel.find({}).populate('creator');
         return events;
     },
+    fetchSingleEvent: async (args) => {
+        const event = await eventModel.findOne({_id: args.eventId}).populate('creator');
+        return event;
+    },
     createEvent: async (args) => {
         const { name, category, price, date } = args.eventInput;
         try {
@@ -49,5 +53,9 @@ module.exports = {
         } catch (err) {
             throw new Error;
         }
+    },
+    updateEvent: async ({ eventInput, eventId }) => {
+        const updatedEvent = await eventModel.findByIdAndUpdate({_id: eventId}, {$set: eventInput}, { new: true });
+        return updatedEvent;
     }
 }
