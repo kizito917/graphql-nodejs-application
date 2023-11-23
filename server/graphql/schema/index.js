@@ -17,6 +17,11 @@ module.exports = buildSchema(`
         password: String!
     }
 
+    type AuthData {
+        message: String!
+        token: String!
+    }
+
     input EventInput {
         name: String!
         category: String!
@@ -39,6 +44,7 @@ module.exports = buildSchema(`
         createEvent(eventInput: EventInput): Event
         createUser(userInput: UserInput): User
         updateEvent(eventInput: EventInput, eventId: String): Event
+        signInUser(email: String!, password: String!): AuthData!
     }
 
     schema {

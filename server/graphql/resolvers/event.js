@@ -7,11 +7,19 @@ module.exports = {
         const events = await eventModel.find({}).populate('creator');
         return events;
     },
-    fetchSingleEvent: async (args) => {
+    fetchSingleEvent: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated');
+        }
+        
         const event = await eventModel.findOne({_id: args.eventId}).populate('creator');
         return event;
     },
-    createEvent: async (args) => {
+    createEvent: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated');
+        }
+        
         const { name, category, price, date } = args.eventInput;
         try {
             const event = new eventModel({
@@ -32,7 +40,11 @@ module.exports = {
             throw new Error;
         }
     },
-    updateEvent: async ({ eventInput, eventId }) => {
+    updateEvent: async ({ eventInput, eventId }, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated');
+        }
+
         const updatedEvent = await eventModel.findByIdAndUpdate({_id: eventId}, {$set: eventInput}, { new: true });
         return updatedEvent;
     }

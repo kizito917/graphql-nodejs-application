@@ -1,5 +1,5 @@
 const eventResolver = require('./event');
-const userResolver = require('./user');
+const userResolver = require('./auth');
 
 const rootResolver = {
     ...eventResolver,

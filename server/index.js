@@ -6,6 +6,7 @@ dotenv.config();
 const { graphqlHTTP } = require('express-graphql');
 const graphQlSchema = require('./graphql/schema/index');
 const graphQlRootResolver = require('./graphql/resolvers/index');
+const isAuthenticated = require('./middlewares/auth.middleware');
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('DB connection successful'))
@@ -15,6 +16,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(cors());
+app.use(isAuthenticated);
 
 app.use('/graphql', graphqlHTTP({
     schema: graphQlSchema,
