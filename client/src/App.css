@@ -28,6 +28,33 @@
   color: #61dafb;
 }
 
+.page-wrapper {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 4px solid whitesmoke;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.page-content {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 60%;
+  height: 30px;
+}
+
+button {
+  padding: 0.5rem 2rem;
+  border-radius: 5%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
